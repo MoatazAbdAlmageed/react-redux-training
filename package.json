@@ -22,6 +22,12 @@
     "jsinspect": "./node_modules/.bin/jsinspect",
     "full-test": "eslint ./src/;stylelint ./src/ ;jsinspect ./src/"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm full-test",
+      "pre-push": "npm test"
+    }
+  },
   "eslintConfig": {
     "extends": "moataz-react-redux-training"
   },
