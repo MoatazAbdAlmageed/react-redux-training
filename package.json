@@ -24,8 +24,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm full-test",
-      "pre-push": "npm test"
+      "pre-commit": "npm run full-test",
+      "pre-push": ""
     }
   },
   "eslintConfig": {
