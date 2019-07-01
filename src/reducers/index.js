@@ -1,4 +1,3 @@
 import combineReducers from "redux/src/combineReducers";
 
-export default combineReducers({
-})
+export default combineReducers({})
