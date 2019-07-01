@@ -18,7 +18,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "eslint": "./node_modules/.bin/eslint",
-    "stylelint": "./node_modules/.bin/stylelint"
+    "stylelint": "./node_modules/.bin/stylelint",
+    "jsinspect": "./node_modules/.bin/jsinspect",
+    "full-test": "eslint ./src/;stylelint ./src/ ;jsinspect ./src/"
   },
   "eslintConfig": {
     "extends": "moataz-react-redux-training"
