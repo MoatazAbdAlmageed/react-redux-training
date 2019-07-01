@@ -1,9 +1,17 @@
-import { createStore, applyMiddleware ,compose} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import reducer from './reducers'
-import logger from 'redux-logger'
+
+const middlewares = [];
+
+if (process.env.NODE_ENV === `development`) {
+    const {logger} = require(`redux-logger`);
+    middlewares.push(logger);
+}
+
 const enhancer = window._s_REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer,enhancer(
-    applyMiddleware(logger)
+
+const store = createStore(reducer, enhancer(
+    applyMiddleware(...middlewares)
 ));
 
 
