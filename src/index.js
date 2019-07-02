@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 import App from './components/App';
+import 'bootstrap/dist/css/bootstrap.css';
 
 render(
   <Provider store={store}>
