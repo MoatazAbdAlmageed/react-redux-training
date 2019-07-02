@@ -20,12 +20,12 @@
     "eslint": "./node_modules/.bin/eslint",
     "stylelint": "./node_modules/.bin/stylelint",
     "jsinspect": "./node_modules/.bin/jsinspect",
-    "full-test": "eslint ./src/;stylelint ./src/ ;jsinspect ./src/"
+    "lint": "eslint ./src/ && stylelint ./src/ && jsinspect ./src/"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run full-test",
-      "pre-push": ""
+      "pre-commit": "",
+      "pre-push": "npm run lint && npm test"
     }
   },
   "eslintConfig": {
