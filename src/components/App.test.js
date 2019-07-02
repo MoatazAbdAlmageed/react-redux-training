@@ -1,5 +1,1 @@
-/** @jsx Foo */
-
-import React from 'react';
-
-it('renders without crashing', () => undefined);
+it('Dummy test', () => undefined);
