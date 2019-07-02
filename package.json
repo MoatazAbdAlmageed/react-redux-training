@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
@@ -21,7 +20,13 @@
     "eslint": "./node_modules/.bin/eslint",
     "stylelint": "./node_modules/.bin/stylelint",
     "jsinspect": "./node_modules/.bin/jsinspect",
-    "full-test": "eslint ./src/;stylelint ./src/ ;jsinspect ./src/"
+    "flow": "./node_modules/.bin/flow",
+    "lint": "eslint ./src/ && stylelint ./src/ && jsinspect ./src/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "CI=true react-scripts test"
+    }
   },
   "eslintConfig": {
     "extends": "moataz-react-redux-training"
@@ -40,7 +45,6 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-react": "^7.14.2",
     "flow-bin": "^0.102.0",
     "husky": "^2.7.0",
     "jsinspect": "^0.12.7",

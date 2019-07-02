@@ -1,29 +1,26 @@
 import React from 'react';
 import './App.css';
-import Create from "./article/Create";
-import {Link, Route} from "react-router-dom";
-import SignIn from "./auth/SignIn";
-import SignUp from "./auth/SignUp";
-import Home from "./Home";
+import { Link, Route } from 'react-router-dom';
+import Create from './article/Create';
 
 function App() {
-    return (
-        <div className="container">
-            <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
-                <Link to="/">Home</Link>
-                <ul className="navbar-nav mr-aut">
-                    <li><Link to="signin">Sign in</Link></li>
-                </ul>
-            </nav>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src="/favicon.ico" alt="React" />
+        <h1>React</h1>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/create">Create Article</Link></li>
+        </ul>
 
-            <Route path="/create" component={Create}/>
-            <Route path="/signin" component={SignIn}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/" exact component={Home}/>
+      </header>
 
 
-        </div>
-    );
+      <Route path="/create" component={Create} />
+
+    </div>
+  );
 }
 
 export default App;
