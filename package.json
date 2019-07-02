@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-react": "^7.14.2",
     "flow-bin": "^0.102.0",
     "husky": "^2.7.0",
     "jsinspect": "^0.12.7",
