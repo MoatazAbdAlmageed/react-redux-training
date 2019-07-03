@@ -8,7 +8,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 function SignUp() {
   return (
     <div className="SignUp">
-      <h1>Sign up</h1>
+      <h1>Sign Up</h1>
       <Link to="/sign-in">Have an account?</Link>
       <InputGroup className="mb-3">
         <FormControl
