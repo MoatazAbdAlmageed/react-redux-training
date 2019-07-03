@@ -27,7 +27,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint --fix",
       "pre-push": "CI=true react-scripts test"
     }
   },
