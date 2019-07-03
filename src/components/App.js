@@ -14,48 +14,57 @@ import SignUp from './auth/SignUp';
 import Home from './Home';
 
 const isLoggedIn = false;
+
 function App() {
   return (
     <div>
       <Container>
         <Row>
-          <Col>
-            <Nav
-              activeKey="/"
-            >
-              <Nav.Item>
-                <Nav.Link href="/">Home</Nav.Link>
-              </Nav.Item>
+          <Nav
+            activeKey="/"
+          />
+          <Container>
+            <Row className="justify-content-md-center">
 
-              {isLoggedIn
+              <Col xs lg="10">
+                <Nav.Item>
+                  <Nav.Link href="/">Home</Nav.Link>
+                </Nav.Item>
+              </Col>
 
-                ? (
-                  <Dropdown as={NavItem}>
-                    <Dropdown.Toggle as={NavLink}>Moataz</Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>Settings</Dropdown.Item>
-                      <Dropdown.Item href="sign-out">Sign Out</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                )
-                : (
-                  <Nav.Item>
-                    <Nav.Link href="sign-in">Sign In</Nav.Link>
-                  </Nav.Item>
-                )
-              }
-            </Nav>
-          </Col>
+              <Col xs lg="2">
+                {isLoggedIn
+
+                  ? (
+                    <Dropdown as={NavItem}>
+                      <Dropdown.Toggle as={NavLink}>Moataz</Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item>Settings</Dropdown.Item>
+                        <Dropdown.Item href="sign-out">Sign Out</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )
+                  : (
+                    <Nav.Item>
+                      <Nav.Link className="pull-right" href="sign-in">Sign In</Nav.Link>
+                    </Nav.Item>
+                  )
+                }
+              </Col>
+            </Row>
+          </Container>
         </Row>
 
         <Row className="justify-content-md-center">
           <Col md={6}>
-            <Route path="/create-article" component={Create} />
-            <Route path="/Sign-in" component={SignIn} />
-            <Route path="/Sign-up" component={SignUp} />
-            <Route path="/" exact component={Home} />
+            <Route path="/create-article" component={Create}/>
+            <Route path="/Sign-in" component={SignIn}/>
+            <Route path="/Sign-up" component={SignUp}/>
+            <Route path="/" exact component={Home}/>
           </Col>
         </Row>
+
+
       </Container>
 
 
