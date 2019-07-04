@@ -5,7 +5,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import store from '../../store';
+import actions from '../../actions';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -31,6 +32,8 @@ class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
+    /* dispatch login action */
+    store.dispatch(actions.SIGNINACTION(this.state));
   }
 
   render() {

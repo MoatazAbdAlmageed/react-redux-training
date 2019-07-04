@@ -8,10 +8,10 @@ import NavLink from 'react-bootstrap/NavLink';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
-import Create from './article/Create';
-import SignIn from './auth/SignIn';
-import SignUp from './auth/SignUp';
-import Home from './Home';
+import Create from './article/Create.component';
+import SignIn from './auth/SignIn.component';
+import SignUp from './auth/SignUp.component';
+import Home from './Home.component';
 
 const isLoggedIn = false;
 
