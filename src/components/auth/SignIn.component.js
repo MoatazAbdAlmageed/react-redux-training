@@ -5,7 +5,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import store from '../../store';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// import PropTypes from 'prop-types';
 import actions from '../../actions';
 
 class SignIn extends React.Component {
@@ -15,7 +17,6 @@ class SignIn extends React.Component {
       username: '',
       password: '',
     };
-
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassWordChange = this.handlePassWordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,14 +32,11 @@ class SignIn extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-    /* dispatch login action */
-    store.dispatch(actions.SIGNINACTION(this.state));
+    this.props.SignIn(this.state);
   }
 
   render() {
-    const { validated } = this.state;
-
+    const validated = this.state;
     return (
       <div className="SignIn">
         <h1>Sign In</h1>
@@ -75,5 +73,12 @@ class SignIn extends React.Component {
     );
   }
 }
-
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(
+    {
+      SignIn: actions.signInAction,
+    },
+    dispatch,
+  ),
+});
+export default connect(null, mapDispatchToProps)(SignIn);

@@ -1,4 +1,4 @@
-import SIGNINACTION from './signIn.action';
-import SIGNOUTACTION from './signOut.action';
+import signInAction from './signIn.action';
+import signOutAction from './signOut.action';
 
-export default { SIGNINACTION, SIGNOUTACTION };
+export default { signInAction, signOutAction };
