@@ -57,10 +57,12 @@ function App() {
 
         <Row className="justify-content-md-center">
           <Col md={6}>
-            <Route path="/create-article" component={Create}/>
-            <Route path="/Sign-in" component={SignIn}/>
-            <Route path="/Sign-up" component={SignUp}/>
-            <Route path="/" exact component={Home}/>
+            <Route path="/create-article" component={Create} />
+            <Route path="/Sign-in" component={SignIn} />
+            <Route path="/Sign-up" component={SignUp} />
+            {isLoggedIn
+              && <Route path="/" exact component={Home} />
+              }
           </Col>
         </Row>
 
