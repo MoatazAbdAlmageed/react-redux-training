@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -22,6 +22,10 @@ class SignIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
   handleEmailChange(event) {
     this.setState({ username: event.target.value });
   }
@@ -35,14 +39,22 @@ class SignIn extends React.Component {
     this.props.SignIn(this.state);
   }
 
+
   render() {
     const validated = this.state;
-    return (
+    const { auth } = this.props;
+
+    if (auth) {
+      console.log('auth');
+      localStorage.setItem('isLoggedIn', true);
+    }
+
+
+    return !localStorage.getItem('isLoggedIn') ? (
       <div className="SignIn">
-        <h1>Sign In</h1>
         <Link to="/sign-up">Need an account?</Link>
         <Form
-          noValidate
+          novalidates
           validated={validated}
           onSubmit={e => this.handleSubmit(e)}
         >
@@ -69,10 +81,15 @@ class SignIn extends React.Component {
             <Button type="submit" size="lg" variant="info">Sign in</Button>
           </ButtonToolbar>
         </Form>
+
       </div>
-    );
+    ) : <Redirect to="/" />;
   }
 }
+const mapStateToProps = state => ({
+  auth: state.signInReducer.auth,
+});
+
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     {
@@ -81,4 +98,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch,
   ),
 });
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

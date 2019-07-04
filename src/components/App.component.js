@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavItem from 'react-bootstrap/NavItem';
@@ -8,13 +7,14 @@ import NavLink from 'react-bootstrap/NavLink';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
+import { Route, Redirect } from 'react-router-dom';
 import Create from './article/Create.component';
 import SignIn from './auth/SignIn.component';
 import SignUp from './auth/SignUp.component';
 import Home from './Home.component';
 
-const isLoggedIn = false;
-
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+console.log('isLoggedIn', isLoggedIn);
 function App() {
   return (
     <div>
@@ -58,10 +58,10 @@ function App() {
         <Row className="justify-content-md-center">
           <Col md={6}>
             <Route path="/create-article" component={Create} />
-            <Route path="/Sign-in" component={SignIn} />
-            <Route path="/Sign-up" component={SignUp} />
+            <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-up" component={SignUp} />
             {isLoggedIn
-              && <Route path="/" exact component={Home} />
+              ? <Route path="/" exact component={Home} /> : <Redirect to="/sign-in" />
               }
           </Col>
         </Row>
