@@ -16,6 +16,10 @@ import NoMatch from './NoMatch.component';
 
 const isLoggedIn = localStorage.getItem('isLoggedIn');
 console.log('isLoggedIn', isLoggedIn);
+const SIGNOUT = (node) => {
+  console.log('SIGNOUT');
+  localStorage.removeItem('isLoggedIn');
+};
 function App() {
   return (
     <div>
@@ -41,7 +45,7 @@ function App() {
                       <Dropdown.Toggle as={NavLink}>Moataz</Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item href="sign-out">Sign Out</Dropdown.Item>
+                        <Dropdown.Item onClick={SIGNOUT}>Sign Out</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   )

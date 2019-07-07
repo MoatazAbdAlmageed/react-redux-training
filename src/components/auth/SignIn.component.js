@@ -24,6 +24,7 @@ class SignIn extends React.Component {
 
   componentDidMount() {
     console.log('componentDidMount');
+    document.title = 'React Login';
   }
 
   handleEmailChange(event) {
@@ -41,49 +42,53 @@ class SignIn extends React.Component {
 
 
   render() {
+    console.log('render');
+    console.log(localStorage.getItem('isLoggedIn'));
     const validated = this.state;
     const { auth } = this.props;
 
     if (auth) {
-      console.log('auth');
       localStorage.setItem('isLoggedIn', true);
     }
 
 
-    return !localStorage.getItem('isLoggedIn') ? (
-      <div className="SignIn">
-        <Link to="/sign-up">Need an account?</Link>
-        <Form
-          novalidates
-          validated={validated}
-          onSubmit={e => this.handleSubmit(e)}
-        >
-          <InputGroup className="mb-3">
-            <FormControl
-              required
-              type="email"
-              placeholder="Email Address"
-              aria-label="Email Address"
-              onChange={this.handleEmailChange}
-            />
-          </InputGroup>
-          <InputGroup className="mb-3">
-            <FormControl
-              required
-              type="text"
-              placeholder="Password"
-              aria-label="Password"
-              onChange={this.handlePassWordChange}
-            />
-          </InputGroup>
+    return localStorage.getItem('isLoggedIn') ? (
+      <Redirect to="/" />
+    )
+      : (
+        <div className="SignIn">
+          <Link to="/sign-up">Need an account?</Link>
+          <Form
+            novalidates={validated.toString()}
+            validated={validated}
+            onSubmit={e => this.handleSubmit(e)}
+          >
+            <InputGroup className="mb-3">
+              <FormControl
+                required
+                type="email"
+                placeholder="Email Address"
+                aria-label="Email Address"
+                onChange={this.handleEmailChange}
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <FormControl
+                required
+                type="text"
+                placeholder="Password"
+                aria-label="Password"
+                onChange={this.handlePassWordChange}
+              />
+            </InputGroup>
 
-          <ButtonToolbar>
-            <Button type="submit" size="lg" variant="info">Sign in</Button>
-          </ButtonToolbar>
-        </Form>
+            <ButtonToolbar>
+              <Button type="submit" size="lg" variant="info">Sign in</Button>
+            </ButtonToolbar>
+          </Form>
 
-      </div>
-    ) : <Redirect to="/" />;
+        </div>
+      );
   }
 }
 const mapStateToProps = state => ({
