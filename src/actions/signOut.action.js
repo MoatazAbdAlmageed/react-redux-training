@@ -1,3 +1,5 @@
 export const SIGNOUT = 'SIGNOUT';
-const signOutAction = () => ({ type: SIGNOUT, payload: {} });
+const signOutAction = () => {
+  return ({ type: SIGNOUT, payload: true });
+};
 export default signOutAction;

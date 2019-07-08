@@ -6,101 +6,90 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-// import PropTypes from 'prop-types';
-import actions from '../../actions';
+import signInAction from '../../actions/signIn.action';
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      email: 'admin@admin.com',
+      password: 'admin',
     };
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePassWordChange = this.handlePassWordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    console.log('componentDidMount');
-    document.title = 'React Login';
+  handleChange = (event) => {
+    console.log('event.target.name', event.target.name);
+    console.log('event.target.value', event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
-  handleEmailChange(event) {
-    this.setState({ username: event.target.value });
-  }
 
-  handlePassWordChange(event) {
-    this.setState({ password: event.target.value });
-  }
-
-  handleSubmit(event) {
+  handleSubmit = (event) => {
+    console.log('handleSubmit');
     event.preventDefault();
-    this.props.SignIn(this.state);
+    const { signInAction } = this.props;
+    signInAction(this.state);
   }
-
 
   render() {
-    console.log('render');
-    console.log(localStorage.getItem('isLoggedIn'));
-    const validated = this.state;
-    const { auth } = this.props;
+    console.log('Sign in >>>>>>>>>>>>>>>>>>>>>>>');
+    const isAuthenticated = localStorage.getItem('token');
+    const validated = this.state.email && this.state.password;
 
-    if (auth) {
-      localStorage.setItem('isLoggedIn', true);
-    }
+    const { currentUser } = this.props;
+    console.log('currentUser', currentUser);
+    console.log('Sign in >>>>>>>>>>>>>>>>>>>>>>>');
+    return (
+      <div>
+        { currentUser && currentUser.email ? <Redirect to="/" />
+          : (
+            <div className="SignIn">
+              <Link to="/sign-up">Need an account?</Link>
+              <Form
+                novalidates={validated.toString()}
+                validated={validated}
+                value={this.state.email}
+                onSubmit={e => this.handleSubmit(e)}
+              >
+                <InputGroup className="mb-3">
+                  <FormControl
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    aria-label="Email Address"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                  <FormControl
+                    name="password"
+                    type="text"
+                    placeholder="Password"
+                    aria-label="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </InputGroup>
 
+                <ButtonToolbar>
+                  <Button type="submit" size="lg" variant="info">Sign in</Button>
+                </ButtonToolbar>
+              </Form>
 
-    return localStorage.getItem('isLoggedIn') ? (
-      <Redirect to="/" />
-    )
-      : (
-        <div className="SignIn">
-          <Link to="/sign-up">Need an account?</Link>
-          <Form
-            novalidates={validated.toString()}
-            validated={validated}
-            onSubmit={e => this.handleSubmit(e)}
-          >
-            <InputGroup className="mb-3">
-              <FormControl
-                required
-                type="email"
-                placeholder="Email Address"
-                aria-label="Email Address"
-                onChange={this.handleEmailChange}
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <FormControl
-                required
-                type="text"
-                placeholder="Password"
-                aria-label="Password"
-                onChange={this.handlePassWordChange}
-              />
-            </InputGroup>
-
-            <ButtonToolbar>
-              <Button type="submit" size="lg" variant="info">Sign in</Button>
-            </ButtonToolbar>
-          </Form>
-
-        </div>
-      );
+            </div>
+          )}
+      </div>
+    );
   }
 }
 const mapStateToProps = state => ({
-  auth: state.signInReducer.auth,
+  currentUser: state.currentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(
-    {
-      SignIn: actions.signInAction,
-    },
-    dispatch,
-  ),
+  signInAction: userInfo => dispatch(signInAction(userInfo)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

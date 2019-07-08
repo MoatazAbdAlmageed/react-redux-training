@@ -14,23 +14,12 @@ class SignUp extends React.Component {
       email: '',
       password: '',
     };
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePassWordChange = this.handlePassWordChange.bind(this);
-    this.handleUserNameChange = this.handleUserNameChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEmailChange(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  handlePassWordChange(event) {
-    this.setState({ password: event.target.value });
-  }
-
-  handleUserNameChange(event) {
-    this.setState({ username: event.target.value });
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   handleSubmit(event) {
@@ -39,42 +28,46 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const { validated } = this.state;
-
+    const { validated } = false;
+    console.log('validated', validated);
     return (
       <div className="SignUp">
         <h1>Sign Up</h1>
         <Link to="/sign-in">Have an account?</Link>
         <Form
-          noValidate
-          validated={validated}
           onSubmit={e => this.handleSubmit(e)}
         >
           <InputGroup className="mb-3">
             <FormControl
               required
               type="text"
+              name="username"
+              value={this.state.username}
               placeholder="User Name"
               aria-label="User Name"
-              onChange={this.handleUserNameChange}
+              onChange={this.handleChange}
             />
           </InputGroup>
           <InputGroup className="mb-3">
             <FormControl
               required
               type="email"
+              name="email"
+              value={this.state.email}
               placeholder="Email Address"
               aria-label="Email Address"
-              onChange={this.handleEmailChange}
+              onChange={this.handleChange}
             />
           </InputGroup>
           <InputGroup className="mb-3">
             <FormControl
               required
-              type="text"
+              type="password"
+              name="password"
+              value={this.state.password}
               placeholder="Password"
               aria-label="Password"
-              onChange={this.handlePassWordChange}
+              onChange={this.handleChange}
             />
           </InputGroup>
 
