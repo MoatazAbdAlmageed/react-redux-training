@@ -18,8 +18,6 @@ class SignIn extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log('event.target.name', event.target.name);
-    console.log('event.target.value', event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -27,20 +25,14 @@ class SignIn extends React.Component {
 
 
   handleSubmit = (event) => {
-    console.log('handleSubmit');
     event.preventDefault();
     const { signInAction } = this.props;
     signInAction(this.state);
   }
 
   render() {
-    console.log('Sign in >>>>>>>>>>>>>>>>>>>>>>>');
-    const isAuthenticated = localStorage.getItem('token');
     const validated = this.state.email && this.state.password;
-
     const { currentUser } = this.props;
-    console.log('currentUser', currentUser);
-    console.log('Sign in >>>>>>>>>>>>>>>>>>>>>>>');
     return (
       <div>
         { currentUser && currentUser.email ? <Redirect to="/" />

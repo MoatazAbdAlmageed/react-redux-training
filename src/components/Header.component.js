@@ -40,9 +40,7 @@ class Header extends React.Component {
                   <Dropdown.Toggle as={NavLink}>Moataz</Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item>Settings</Dropdown.Item>
-                    <Nav.Item>
-                      <a href="#" className="dropdown-item" onClick={e => this.handleLogOut(e)}>Log Out</a>
-                    </Nav.Item>
+                    <button className="dropdown-item" onClick={e => this.handleLogOut(e)}>Log Out</button>
                   </Dropdown.Menu>
                 </Dropdown>
               )
