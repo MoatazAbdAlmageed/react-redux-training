@@ -20,19 +20,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "./node_modules/.bin/eslint",
-    "stylelint": "./node_modules/.bin/stylelint",
-    "jsinspect": "./node_modules/.bin/jsinspect",
+    "eslint": "./node_modules/.bin/eslint src",
+    "stylelint": "./node_modules/.bin/stylelint src",
+    "jsinspect": "./node_modules/.bin/jsinspect src",
     "flow": "./node_modules/.bin/flow",
-    "lint": "eslint ./src/ && stylelint ./src/ && jsinspect ./src/"
+    "lint": "npm run -s eslint && npm run -s stylelint && npm run -s jsinspect"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm run lint",
       "pre-push": "CI=true react-scripts test"
     }
-  },
-  "eslintConfig": {
-    "extends": "moataz-react-redux-training"
   },
   "browserslist": {
     "production": [
@@ -51,6 +49,7 @@
     "flow-bin": "^0.102.0",
     "husky": "^2.7.0",
     "jsinspect": "^0.12.7",
-    "stylelint": "^10.1.0"
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0"
   }
 }
