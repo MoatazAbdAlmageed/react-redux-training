@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
@@ -28,7 +27,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
       "pre-push": "CI=true react-scripts test"
     }
   },

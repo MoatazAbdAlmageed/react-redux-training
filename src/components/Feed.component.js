@@ -9,25 +9,27 @@ import SignIn from './auth/SignIn.component';
 import SignUp from './auth/SignUp.component';
 import Home from './Home.component';
 import NoMatch from './NoMatch.component';
+import PrivateRoute from './PrivateRoute.component';
+import Welcome from './Welcome.component';
+import signInReducer from '../reducers/signIn.reducer';
 
 class Feed extends React.Component {
+  componentDidUpdate() {
+    console.log('Feed:: componentDidUpdate');
+  }
+
   render() {
-    const isAuthenticated = localStorage.getItem('token');
+    console.log('feed: render');
     return (
       <div>
         <Row className="justify-content-md-center">
           <Col md={6}>
             <Switch>
-
               <Route path="/create-article" component={Create} />
               <Route path="/sign-in" component={SignIn} />
               <Route path="/sign-up" component={SignUp} />
-              {isAuthenticated
-                ? <Route path="/" component={Home} />
-                : (
-                  null
-                )
-              }
+              <PrivateRoute path="/home" component={Home} />
+              <Route path="/" component={Welcome} />
               <Route component={NoMatch} />
             </Switch>
           </Col>
@@ -38,8 +40,7 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser,
-  isLogOut: state.isLogOut,
+  currentUser: state.signIn,
 });
 const mapDispatchToProps = dispatch => ({
   signOutAction: () => dispatch(signOutAction()),

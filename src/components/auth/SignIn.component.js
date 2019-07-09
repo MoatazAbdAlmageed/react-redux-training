@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
 import signInAction from '../../actions/signIn.action';
+import signInReducer from '../../reducers/signIn.reducer';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class SignIn extends React.Component {
       email: 'admin@admin.com',
       password: 'admin',
     };
+  }
+
+  componentDidUpdate() {
+    console.log('SignIn:: componentDidUpdate');
   }
 
   handleChange = (event) => {
@@ -26,16 +31,17 @@ class SignIn extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { signInAction } = this.props;
-    signInAction(this.state);
+    const { signInHandler } = this.props;
+    signInHandler(this.state);
   }
 
   render() {
     const validated = this.state.email && this.state.password;
     const { currentUser } = this.props;
+    console.log('currentUser', currentUser);
     return (
       <div>
-        { currentUser && currentUser.email ? <Redirect to="/" />
+        { currentUser && currentUser.email ? <Redirect to="/home" />
           : (
             <div className="SignIn">
               <Link to="/sign-up">Need an account?</Link>
@@ -78,10 +84,10 @@ class SignIn extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  currentUser: state.currentUser,
+  currentUser: state.signIn,
 });
 
 const mapDispatchToProps = dispatch => ({
-  signInAction: userInfo => dispatch(signInAction(userInfo)),
+  signInHandler: userInfo => dispatch(signInAction(userInfo)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

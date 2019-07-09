@@ -5,7 +5,7 @@ import signUpReducer from './signUp.reducer';
 import signOutReducer from './signOut.reducer';
 
 export default combineReducers({
-  currentUser: signInReducer,
-  newUser: signUpReducer,
-  isLogOut: signOutReducer,
+  signIn: signInReducer,
+  signUp: signUpReducer,
+  signOut: signOutReducer,
 });
