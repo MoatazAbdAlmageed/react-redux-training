@@ -1,5 +1,3 @@
-import signInAction from './signIn.action';
-import SignUpAction from './signUp.action';
-import signOutAction from './signOut.action';
+import currentUserAction from './currentUser.action';
 
-export default { signInAction, SignUpAction, signOutAction };
+export default { currentUserAction };

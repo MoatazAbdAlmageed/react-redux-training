@@ -5,6 +5,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Form from 'react-bootstrap/Form';
+import { connect } from 'react-redux';
+import currentUserAction from '../../actions/currentUser.action';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -24,17 +26,22 @@ class SignUp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    const { updateCurrentUser } = this.props;
+    updateCurrentUser(this.state);
   }
 
   render() {
     const { validated } = false;
-    console.log('validated', validated);
+    const { username, email, password } = this.state;
+
     return (
       <div className="SignUp">
         <h1>Sign Up</h1>
         <Link to="/sign-in">Have an account?</Link>
         <Form
+          name="SignUp"
+          novalidates={validated.toString()}
+          validated={validated}
           onSubmit={e => this.handleSubmit(e)}
         >
           <InputGroup className="mb-3">
@@ -42,7 +49,7 @@ class SignUp extends React.Component {
               required
               type="text"
               name="username"
-              value={this.state.username}
+              value={username}
               placeholder="User Name"
               aria-label="User Name"
               onChange={this.handleChange}
@@ -53,7 +60,7 @@ class SignUp extends React.Component {
               required
               type="email"
               name="email"
-              value={this.state.email}
+              value={email}
               placeholder="Email Address"
               aria-label="Email Address"
               onChange={this.handleChange}
@@ -64,7 +71,7 @@ class SignUp extends React.Component {
               required
               type="password"
               name="password"
-              value={this.state.password}
+              value={password}
               placeholder="Password"
               aria-label="Password"
               onChange={this.handleChange}
@@ -79,4 +86,11 @@ class SignUp extends React.Component {
     );
   }
 }
-export default SignUp;
+const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateCurrentUser: userInfo => dispatch(currentUserAction(userInfo)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

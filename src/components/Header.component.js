@@ -6,27 +6,23 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
-import { Redirect } from 'react-router-dom';
-import signOutAction from '../actions/signOut.action';
-import signInAction from '../actions/signIn.action';
+import { Link, Redirect } from 'react-router-dom';
+import currentUserAction from '../actions/currentUser.action';
 
 
 class Header extends React.Component {
   componentDidUpdate() {
-    console.log('Header:: componentDidUpdate');
+
   }
 
   handleLogOut = (event) => {
-    console.log('handleLogOut');
     event.preventDefault();
-    const { signIn, signOut } = this.props;
+    const { updateCurrentUser } = this.props;
     localStorage.removeItem('token');
-    signOut(this.state);
-    signIn({});
+    updateCurrentUser({});
   }
 
   render() {
-    console.log('Header Render ');
     const token = localStorage.getItem('token');
 
     return (
@@ -38,12 +34,12 @@ class Header extends React.Component {
 
           <Col xs lg="10">
             <Nav.Item>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Link to="/home">Homet</Link>
             </Nav.Item>
           </Col>
 
           <Col xs lg="2">
-            { token === '1231231'
+            { token === '123'
 
               ? (
                 <Dropdown as={NavItem}>
@@ -68,11 +64,9 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.signIn,
-  signOut: state.signOut,
+  currentUser: state.currentUser,
 });
 const mapDispatchToProps = dispatch => ({
-  signIn: () => dispatch(signInAction()),
-  signOut: () => dispatch(signOutAction()),
+  updateCurrentUser: userInfo => dispatch(currentUserAction(userInfo)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

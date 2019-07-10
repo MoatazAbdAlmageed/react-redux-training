@@ -6,8 +6,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
-import signInAction from '../../actions/signIn.action';
-import signInReducer from '../../reducers/signIn.reducer';
+import currentUserAction from '../../actions/currentUser.action';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class SignIn extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('SignIn:: componentDidUpdate');
+
   }
 
   handleChange = (event) => {
@@ -31,24 +30,24 @@ class SignIn extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { signInHandler } = this.props;
-    signInHandler(this.state);
+    const { updateCurrentUser } = this.props;
+    updateCurrentUser(this.state);
   }
 
   render() {
-    const validated = this.state.email && this.state.password;
-    const { currentUser } = this.props;
-    console.log('currentUser', currentUser);
+    const validated = false;
+    const token = localStorage.getItem('token');
+    const { email, password } = this.state;
     return (
       <div>
-        { currentUser && currentUser.email ? <Redirect to="/home" />
+        { token && token === '123' ? <Redirect to="/home" />
           : (
             <div className="SignIn">
               <Link to="/sign-up">Need an account?</Link>
               <Form
+                name="SignIn"
                 novalidates={validated.toString()}
                 validated={validated}
-                value={this.state.email}
                 onSubmit={e => this.handleSubmit(e)}
               >
                 <InputGroup className="mb-3">
@@ -57,7 +56,7 @@ class SignIn extends React.Component {
                     name="email"
                     placeholder="Email Address"
                     aria-label="Email Address"
-                    value={this.state.email}
+                    value={email}
                     onChange={this.handleChange}
                   />
                 </InputGroup>
@@ -67,7 +66,7 @@ class SignIn extends React.Component {
                     type="text"
                     placeholder="Password"
                     aria-label="Password"
-                    value={this.state.password}
+                    value={password}
                     onChange={this.handleChange}
                   />
                 </InputGroup>
@@ -84,10 +83,10 @@ class SignIn extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  currentUser: state.signIn,
+  currentUser: state.currentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
-  signInHandler: userInfo => dispatch(signInAction(userInfo)),
+  updateCurrentUser: userInfo => dispatch(currentUserAction(userInfo)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
