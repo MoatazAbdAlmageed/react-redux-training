@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import { connect } from 'react-redux';
 import Row from 'react-bootstrap/Row';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import currentUserAction from '../actions/currentUser.action';
 
 
@@ -28,13 +28,10 @@ class Header extends React.Component {
     return (
 
       <div>
-        <Redirect to="sign-in" />
         <Row>
-
-
           <Col xs lg="10">
             <Nav.Item>
-              <Link to="/home">Homet</Link>
+              <Link to="/home">Home</Link>
             </Nav.Item>
           </Col>
 

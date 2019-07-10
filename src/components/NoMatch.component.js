@@ -1,11 +1,8 @@
 import React from 'react';
 
-const NoMatch = ({ location }) => (
+const NoMatch = () => (
   <div>
-    <h3>
-No match for
-      <code>{location.pathname}</code>
-    </h3>
+    <img width="800px" src="/assets/img/404-page-04.png" alt="" />
   </div>
 );
 
