@@ -11,10 +11,6 @@ import currentUserAction from '../actions/currentUser.action';
 
 
 class Header extends React.Component {
-  componentDidUpdate() {
-
-  }
-
   handleLogOut = (event) => {
     event.preventDefault();
     const { updateCurrentUser } = this.props;
@@ -22,9 +18,9 @@ class Header extends React.Component {
     updateCurrentUser({});
   }
 
+
   render() {
     const token = localStorage.getItem('token');
-
     return (
 
       <div>

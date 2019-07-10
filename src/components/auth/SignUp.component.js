@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
+import Alert from 'react-bootstrap/Alert';
 import currentUserAction from '../../actions/currentUser.action';
+import API from '../../utils/API';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -24,15 +26,27 @@ class SignUp extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
+    const { username, email, password } = this.state;
     const { updateCurrentUser } = this.props;
-    updateCurrentUser(this.state);
+
+    try {
+      const response = await API.post('/users', { user: { username, email, password } });
+      if (response.status === 200) {
+        localStorage.setItem('token', '123');
+        updateCurrentUser(this.state);
+      }
+    } catch (e) {
+      this.setState({ error: e });
+    }
   }
 
   render() {
     const { validated } = false;
-    const { username, email, password } = this.state;
+    const {
+      username, email, password, error,
+    } = this.state;
     const token = localStorage.getItem('token');
 
     return (
@@ -87,6 +101,12 @@ class SignUp extends React.Component {
                   <Button type="submit" size="lg" variant="info">Sign up</Button>
                 </ButtonToolbar>
               </Form>
+
+              {error && (
+              <Alert variant="danger">
+                    Error
+              </Alert>
+              )}
 
             </div>
           )}
