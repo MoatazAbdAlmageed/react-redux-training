@@ -52,7 +52,7 @@ class Header extends React.Component {
               )
               : (
                 <Nav.Item>
-                  <Nav.Link className="pull-right" href="sign-in">Sign In</Nav.Link>
+                  <Link to="/sign-in">Sign In</Link>
                 </Nav.Item>
               )
         }

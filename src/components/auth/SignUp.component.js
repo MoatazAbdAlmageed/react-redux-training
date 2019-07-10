@@ -40,7 +40,7 @@ class SignUp extends React.Component {
         <Link to="/sign-in">Have an account?</Link>
         <Form
           name="SignUp"
-          novalidates={validated.toString()}
+          novalidates={validated}
           validated={validated}
           onSubmit={e => this.handleSubmit(e)}
         >

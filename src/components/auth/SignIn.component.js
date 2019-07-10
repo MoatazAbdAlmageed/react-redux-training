@@ -17,10 +17,6 @@ class SignIn extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-
-  }
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
