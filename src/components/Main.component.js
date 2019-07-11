@@ -10,7 +10,7 @@ import Home from './Home.component';
 import NoMatch from './NoMatch.component';
 import PrivateRoute from './PrivateRoute.component';
 
-class Feed extends React.Component {
+class Main extends React.Component {
   componentDidUpdate() {
 
   }
@@ -38,4 +38,4 @@ class Feed extends React.Component {
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
 });
-export default connect(mapStateToProps, null)(Feed);
+export default connect(mapStateToProps, null)(Main);

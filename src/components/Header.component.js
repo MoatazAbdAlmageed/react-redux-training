@@ -14,13 +14,13 @@ class Header extends React.Component {
   handleLogOut = (event) => {
     event.preventDefault();
     const { updateCurrentUser } = this.props;
-    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     updateCurrentUser({});
   }
 
 
   render() {
-    const token = localStorage.getItem('token');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return (
 
       <div>
@@ -32,11 +32,11 @@ class Header extends React.Component {
           </Col>
 
           <Col xs lg="2">
-            { token === '123'
+            { currentUser && currentUser.token
 
               ? (
                 <Dropdown as={NavItem}>
-                  <Dropdown.Toggle as={NavLink}>Moataz</Dropdown.Toggle>
+                  <Dropdown.Toggle as={NavLink}>{currentUser.username}</Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item>Settings</Dropdown.Item>
                     <button type="button" className="dropdown-item" onClick={e => this.handleLogOut(e)}>Log Out</button>

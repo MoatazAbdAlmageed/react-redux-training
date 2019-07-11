@@ -6,7 +6,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
-import Alert from 'react-bootstrap/Alert';
+import Simplert from 'react-simplert';
 import API from '../../utils/API';
 import currentUserAction from '../../actions/currentUser.action';
 
@@ -16,16 +16,19 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: '',
+      showAlert: false,
+      messageAlert: '',
+      titleAlert: 'Error',
+      typeAlert: 'warning',
     };
   }
 
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value,
+        showAlert: false,
       });
     }
-
 
     async handleSubmit(event) {
       event.preventDefault();
@@ -35,22 +38,27 @@ class SignIn extends React.Component {
       try {
         const response = await API.post('/users/login', { user: { email, password } });
         if (response.status === 200) {
-          localStorage.setItem('token', '123');
-          updateCurrentUser(this.state);
+          localStorage.setItem('currentUser', JSON.stringify(response.data.user));
+          updateCurrentUser(response.data.user);
         }
       } catch (e) {
-        this.setState({ error: e });
+        this.setState({ showAlert: true, messageAlert: 'Login failed wrong user credentials' });
       }
     }
 
 
     render() {
       const validated = false;
-      const token = localStorage.getItem('token');
-      const { email, password, error } = this.state;
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+      const {
+        email, password, showAlert, messageAlert, titleAlert, typeAlert,
+      } = this.state;
+
+
       return (
         <div>
-          {token && token === '123' ? <Redirect to="/home" />
+          {currentUser && currentUser.token ? <Redirect to="/home" />
             : (
               <div className="SignIn">
                 <Link to="/sign-up">Need an account?</Link>
@@ -88,11 +96,13 @@ class SignIn extends React.Component {
                   </ButtonToolbar>
                 </Form>
 
-                {error && (
-                <Alert variant="danger">
-                 Error
-                </Alert>
-                )}
+                <Simplert
+                  showSimplert={showAlert}
+                  type={typeAlert}
+                  title={titleAlert}
+                  message={messageAlert}
+                />
+
               </div>
             )}
         </div>
