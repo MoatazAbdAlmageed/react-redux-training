@@ -11,7 +11,13 @@ import NoMatch from "./NoMatch.component";
 import PrivateRoute from "./PrivateRoute.component";
 
 class Main extends React.Component {
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    /**
+     * if deleted the following error will appear
+     * 13:1  error  Component should be written as a pure function  react/prefer-stateless-function
+     * any recommendation I want to keep it statefull component to make sure it will render in signin/signup actions !!
+     */
+  }
 
   render() {
     return (
