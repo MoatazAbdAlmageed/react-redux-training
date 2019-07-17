@@ -1,6 +1,3 @@
-import combineReducers from 'redux/src/combineReducers';
-import currentUserReducer from './currentUser.reducer';
+import combineReducers from "redux/src/combineReducers";
 
-export default combineReducers({
-  currentUser: currentUserReducer,
-});
+export default combineReducers({});

@@ -8,8 +8,12 @@
   "plugins": [
     "react"
   ],
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
+    "prettier": true,
     "react/jsx-filename-extension": [
       1,
       {
@@ -19,7 +23,11 @@
         ]
       }
     ],
-    "no-underscore-dangle": [0],
-    "react/prop-types": [0]
+    "no-underscore-dangle": [
+      0
+    ],
+    "react/prop-types": [
+      0
+    ]
   }
 }

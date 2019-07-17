@@ -26,6 +26,7 @@
     "jsinspect": "./node_modules/.bin/jsinspect src",
     "flow": "./node_modules/.bin/flow",
     "lint": "npm run -s eslint && npm run -s stylelint && npm run -s jsinspect"
+
   },
   "husky": {
     "hooks": {
@@ -47,10 +48,15 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "flow-bin": "^0.102.0",
     "husky": "^2.7.0",
     "jsinspect": "^0.12.7",
+    "prettier": "1.18.2",
     "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-prettier": "^1.1.1"
   }
 }
