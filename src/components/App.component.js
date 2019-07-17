@@ -1,7 +1,7 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Header from './Header.component';
-import Main from './Main.component';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Header from "./Header.component";
+import Main from "./Main.component";
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
         <Header />
         <Main />
       </Container>
-
     </div>
   );
 }

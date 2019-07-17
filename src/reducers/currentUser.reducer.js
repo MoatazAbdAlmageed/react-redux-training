@@ -1,4 +1,4 @@
-import { CURRENT_USER } from '../actions/currentUser.action';
+import { CURRENT_USER } from "../actions/currentUser.action";
 
 export default (state = {}, action) => {
   switch (action.type) {

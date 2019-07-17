@@ -1,19 +1,17 @@
-import React from 'react';
-import Col from 'react-bootstrap/Col';
-import { connect } from 'react-redux';
-import Row from 'react-bootstrap/Row';
-import { Route, Switch } from 'react-router-dom';
-import Create from './article/Create.component';
-import SignIn from './auth/SignIn.component';
-import SignUp from './auth/SignUp.component';
-import Home from './Home.component';
-import NoMatch from './NoMatch.component';
-import PrivateRoute from './PrivateRoute.component';
+import React from "react";
+import Col from "react-bootstrap/Col";
+import { connect } from "react-redux";
+import Row from "react-bootstrap/Row";
+import { Route, Switch } from "react-router-dom";
+import Create from "./article/Create.component";
+import SignIn from "./auth/SignIn.component";
+import SignUp from "./auth/SignUp.component";
+import Home from "./Home.component";
+import NoMatch from "./NoMatch.component";
+import PrivateRoute from "./PrivateRoute.component";
 
 class Main extends React.Component {
-  componentDidUpdate() {
-
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
@@ -36,6 +34,9 @@ class Main extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser,
+  currentUser: state.currentUser
 });
-export default connect(mapStateToProps, null)(Main);
+export default connect(
+  mapStateToProps,
+  null
+)(Main);

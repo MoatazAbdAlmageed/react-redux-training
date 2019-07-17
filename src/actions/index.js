@@ -1,3 +1,3 @@
-import currentUserAction from './currentUser.action';
+import currentUserAction from "./currentUser.action";
 
 export default { currentUserAction };
