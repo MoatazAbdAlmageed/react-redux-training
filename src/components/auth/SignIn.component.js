@@ -101,7 +101,7 @@ class SignIn extends React.Component {
               </InputGroup>
 
               <ButtonToolbar>
-                <Button type="submit" size="lg" variant="info">
+                <Button type="submit" size="lg" variant="default">
                   Sign in
                 </Button>
               </ButtonToolbar>
