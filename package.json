@@ -7,6 +7,7 @@
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
+    "react-bootstrap-theme-switcher": "^1.0.7",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
@@ -26,7 +27,6 @@
     "jsinspect": "./node_modules/.bin/jsinspect src",
     "flow": "./node_modules/.bin/flow",
     "lint": "npm run -s eslint && npm run -s stylelint && npm run -s jsinspect"
-
   },
   "husky": {
     "hooks": {

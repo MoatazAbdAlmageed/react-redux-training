@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeSwitcher } from "react-bootstrap-theme-switcher";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store";
 import App from "./components/App.component";
@@ -10,9 +11,15 @@ import "bootstrap/dist/css/bootstrap.css";
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeSwitcher
+      themePath="/themes"
+      defaultTheme="yeti"
+      storeThemeKey="theme"
+    >
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeSwitcher>
   </Provider>,
   document.getElementById("root")
 );

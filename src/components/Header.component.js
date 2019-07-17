@@ -7,6 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import { connect } from "react-redux";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
+import { ThemeChooser } from "react-bootstrap-theme-switcher";
 import currentUserAction from "../actions/currentUser.action";
 
 class Header extends React.Component {
@@ -25,6 +26,7 @@ class Header extends React.Component {
           <Col xs lg="10">
             <Nav.Item>
               <Link to="/home">Home</Link>
+              <ThemeChooser />
             </Nav.Item>
           </Col>
 
