@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-bootstrap-theme-switcher": "^1.0.7",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-simplert": "^0.0.2",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
@@ -15,10 +21,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "./node_modules/.bin/eslint src",
+    "stylelint": "./node_modules/.bin/stylelint src",
+    "jsinspect": "./node_modules/.bin/jsinspect src",
+    "flow": "./node_modules/.bin/flow",
+    "lint": "npm run -s eslint && npm run -s stylelint && npm run -s jsinspect"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "CI=true react-scripts test"
+    }
   },
   "browserslist": {
     "production": [
@@ -31,5 +45,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "flow-bin": "^0.102.0",
+    "husky": "^2.7.0",
+    "jsinspect": "^0.12.7",
+    "prettier": "1.18.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-prettier": "^1.1.1"
   }
 }
